@@ -10,5 +10,10 @@ package Clases;
  * @author Tavo
  */
 public class ClaseAdmin {
+    String user,pass;
     
+    public ClaseAdmin(String u, String p){
+        this.user = u;
+        this.pass = p;
+    }
 }

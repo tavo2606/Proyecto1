@@ -9,6 +9,10 @@ package Clases;
  *
  * @author Tavo
  */
-public class ClasePeliculas {
+public class ClasePeliculas extends ClaseCatalogo{
+    
+    public ClasePeliculas(String nombre, String autor, String categoria, float precio, int cantDispo) {
+        super(nombre, autor, categoria, precio, cantDispo);
+    }
     
 }
