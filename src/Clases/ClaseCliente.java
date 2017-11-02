@@ -11,14 +11,14 @@ package Clases;
  */
 public class ClaseCliente {
     String nombre;
-    String cedula;
     String contra;
+    String cedula; 
     String correo;
     
-    public ClaseCliente(String n, String c, String p, String e) {
+    public ClaseCliente(String n, String p, String c, String e) {
         this.nombre = n;
-        this.cedula = c;
         this.contra = p;
+        this.cedula = c;  
         this.correo = e;
     }
     
