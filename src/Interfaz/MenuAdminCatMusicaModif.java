@@ -229,18 +229,25 @@ public class MenuAdminCatMusicaModif extends javax.swing.JFrame {
                         escritor.close();
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null,);
-                  / }
+                    }
+                    JOptionPane.showMessageDialog(null, "Música modificado del catálogo", "Modificar", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
 
             pw.close();
 
-            this.dispose();
-
         } catch (Exception e) {
             String error = "No se encontro archivo " + e;
             JOptionPane.showConfirmDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
         }
+        
+        cmbNombre.setSelectedIndex(0);
+        /*txtAutor.setText(null);
+        txtCantidad.setText(null);
+        txtListaCanciones.setText(null);
+        txtPrecio.setText(null);
+        cmbCategoria.setSelectedIndex(0);*/
+        
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed

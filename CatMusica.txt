@@ -1,4 +1,4 @@
 Chop_Suey System_Of_A_Down Rock 5500 Chop_Suey,Toxicity,Sugar 5
 Toxicity System_of_a_down Rock 6000 Prison_Song,Needles,Deer_Dance,Jet_Pilot,X,Chop_Suey,Bounce,Forest,ATWA,Science,Shimmy,Toxicity,Psycho,Aerials 10
 Needles System_of_a_down Rock 6500 Needles,Chop_suey,prison 15
-Wings BTS Pop 15000 intro:_Boy_meets_evil,Blood_Sweat_&_tears,Begin,Lie,First_love,Reflection,MAMA,Awake,Lost,BTS_Cypher_PT.4,Am_I_Wrong,21st_Century_Girls,Dul!_Set!,Interlude:wings 15
+Wings BTS Pop 10000 intro:_Boy_meets_evil,Blood_Sweat_&_tears,Begin,Lie,First_love,Reflection,MAMA,Awake,Lost,BTS_Cypher_PT.4,Am_I_Wrong,21st_Century_Girls,Dul!_Set!,Interlude:wings 15
