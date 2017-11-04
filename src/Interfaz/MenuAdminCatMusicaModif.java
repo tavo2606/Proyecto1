@@ -47,7 +47,7 @@ public class MenuAdminCatMusicaModif extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtCantidad = new javax.swing.JTextField();
-        btnAceptar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
         txtPrecio = new javax.swing.JTextField();
         txtAutor = new javax.swing.JTextField();
@@ -80,10 +80,10 @@ public class MenuAdminCatMusicaModif extends javax.swing.JFrame {
             }
         });
 
-        btnAceptar.setText("Agregar");
-        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+        btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAceptarActionPerformed(evt);
+                btnModificarActionPerformed(evt);
             }
         });
 
@@ -129,7 +129,7 @@ public class MenuAdminCatMusicaModif extends javax.swing.JFrame {
                         .addContainerGap(27, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addComponent(btnAceptar)
+                        .addComponent(btnModificar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnVolver)
                         .addGap(25, 25, 25))))
@@ -165,7 +165,7 @@ public class MenuAdminCatMusicaModif extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnVolver)
-                    .addComponent(btnAceptar))
+                    .addComponent(btnModificar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -191,17 +191,15 @@ public class MenuAdminCatMusicaModif extends javax.swing.JFrame {
         }catch(Exception e){JOptionPane.showMessageDialog(null, "No se encontro el archivo" + e, "Error", JOptionPane.ERROR_MESSAGE);}
     }
     
-    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         try {
             String archivo = "CatMusica.txt";
             FileWriter fw = new FileWriter(archivo, true);
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter pw = new PrintWriter(bw);
 
-            FileReader fr = new FileReader(archivo);
+            FileReader fr = new FileReader("CatMusica.txt");
             BufferedReader lector = new BufferedReader(fr);
-
-            boolean bandera = false;
 
             ArrayList<String> listaMusica = new ArrayList();
             String linea;
@@ -209,18 +207,19 @@ public class MenuAdminCatMusicaModif extends javax.swing.JFrame {
             while ((linea = lector.readLine()) != null) {
                 listaMusica.add(linea);
             }
-            
-            for(int i = 0; i<listaMusica.size();i++){
-                if (linea.split(" ")[0].replaceAll("_", " ").equals(cmbNombre.getSelectedItem().toString())) {
+
+            for (int i = 0; i < listaMusica.size(); i++) {
+                if (listaMusica.get(i).split(" ")[0].replaceAll("_", " ").equals(cmbNombre.getSelectedItem().toString())) {
                     PrintWriter escritor = null;
                     FileWriter fichero = null;
-                    String newMusic = txtNombre.getText().replaceAll(" ", "_") + " " + txtAutor.getText().replaceAll(" ", "_") + " "
+                    String modMusic = cmbNombre.getSelectedItem().toString().replaceAll(" ", "_") + " "
+                            + txtAutor.getText().replaceAll(" ", "_") + " "
                             + cmbCategoria.getSelectedItem().toString() + " "
-                            + txtPrecio.getText() + " " + txtListaCanciones.getText().replaceAll("\n", ",").replaceAll(" ", "_") + " "
+                            + txtPrecio.getText() + " " + txtListaCanciones.getText().replaceAll(" ", "_").replaceAll("\n", ",") + " "
                             + txtCantidad.getText();
-                    listaMusica.set(i, newMusic);
+                    listaMusica.set(i, modMusic);
                     try {
-                        fichero = new FileWriter(archivo);
+                         fichero = new FileWriter(archivo);
                         escritor = new PrintWriter(fichero);
                         escritor.flush();
                         for (String musica : listaMusica) {
@@ -229,26 +228,20 @@ public class MenuAdminCatMusicaModif extends javax.swing.JFrame {
                         }
                         escritor.close();
                     } catch (Exception e) {
-                        JOptionPane.showConfirmDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-                    bandera = true;
-                    JOptionPane.showMessageDialog(null, "Musica Agregado al catálogo.", "Catálogo de música", JOptionPane.INFORMATION_MESSAGE);
-                } //Borrar
+                        JOptionPane.showMessageDialog(null,);
+                  / }
+                }
             }
 
             pw.close();
 
-            if (!bandera) {
-                JOptionPane.showMessageDialog(null, "Musica existente.", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                this.dispose();
-            }
+            this.dispose();
 
         } catch (Exception e) {
-            String error = "No se encontro archivo" + e;
+            String error = "No se encontro archivo " + e;
             JOptionPane.showConfirmDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_btnAceptarActionPerformed
+    }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         this.dispose();
@@ -260,7 +253,6 @@ public class MenuAdminCatMusicaModif extends javax.swing.JFrame {
                 String archivo = "CatMusica.txt";
                 FileWriter fw = new FileWriter(archivo, true);
                 BufferedWriter bw = new BufferedWriter(fw);
-                PrintWriter pw = new PrintWriter(bw);
 
                 FileReader fr = new FileReader(archivo);
                 BufferedReader lector = new BufferedReader(fr);
@@ -326,7 +318,7 @@ public class MenuAdminCatMusicaModif extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox<String> cmbCategoria;
     private javax.swing.JComboBox<String> cmbNombre;

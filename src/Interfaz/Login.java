@@ -167,10 +167,10 @@ public class Login extends javax.swing.JFrame {
             String contraseña = "";
             nombre = txtUser.getText();
             contraseña = txtPass.getText();
+            
             FileReader fr = new FileReader(dato);
             BufferedReader lector = new BufferedReader(fr);
-            String user = "";
-            String password = "";
+            
             String linea;
             boolean bandera = false;
             
@@ -187,13 +187,18 @@ public class Login extends javax.swing.JFrame {
             }
            
             if (bandera) {
-                //administrator_Menu();
-                JOptionPane.showConfirmDialog(null, "Menu " + dato);
+                if(dato.equals("Admin.txt")){
+                    MenuAdmin v = new MenuAdmin();
+                    v.setVisible(true);
+                }else{
+                    MenuCliente v = new MenuCliente();
+                    v.setVisible(true);
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecto.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-
             pw.close();
+            this.dispose();
 
         } catch (Exception e) {
 

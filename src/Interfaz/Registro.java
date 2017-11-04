@@ -52,6 +52,7 @@ public class Registro extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registrarse");
+        setResizable(false);
 
         jLabel1.setText("Nombre de usuario: ");
 
@@ -173,8 +174,8 @@ public class Registro extends javax.swing.JFrame {
                     fichero = new FileWriter(archivo);
                     escritor = new PrintWriter(fichero);
                     escritor.flush();
-                    for (String employees : listaClientes) {
-                        pw.write(employees);
+                    for (String cliente : listaClientes) {
+                        pw.write(cliente);
                         pw.println();
                     }
                     escritor.close();
