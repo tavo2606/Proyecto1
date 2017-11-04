@@ -228,7 +228,7 @@ public class MenuAdminCatMusicaModif extends javax.swing.JFrame {
                         }
                         escritor.close();
                     } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null,);
+                        JOptionPane.showMessageDialog(null,e,"Error",JOptionPane.ERROR_MESSAGE);
                     }
                     JOptionPane.showMessageDialog(null, "Música modificado del catálogo", "Modificar", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -259,7 +259,6 @@ public class MenuAdminCatMusicaModif extends javax.swing.JFrame {
             try {
                 String archivo = "CatMusica.txt";
                 FileWriter fw = new FileWriter(archivo, true);
-                BufferedWriter bw = new BufferedWriter(fw);
 
                 FileReader fr = new FileReader(archivo);
                 BufferedReader lector = new BufferedReader(fr);
