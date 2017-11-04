@@ -117,7 +117,8 @@ public class MenuAdminCatMusica extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnMostarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostarActionPerformed
-        // TODO add your handling code here:
+        MenuAdminCatMost v = new MenuAdminCatMost();
+        v.setVisible(true);
     }//GEN-LAST:event_btnMostarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
