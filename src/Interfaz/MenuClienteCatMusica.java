@@ -5,9 +5,7 @@
  */
 package Interfaz;
 
-import com.sun.javafx.font.Disposer;
-import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory;
-import java.awt.Component;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import javax.swing.JOptionPane;
@@ -88,7 +86,7 @@ public class MenuClienteCatMusica extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Buscar Álbum: ");
+        jLabel4.setText("Buscar: ");
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -153,9 +151,9 @@ public class MenuClienteCatMusica extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(30, 30, 30)
                                 .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnBuscar))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,7 +195,6 @@ public class MenuClienteCatMusica extends javax.swing.JFrame {
                         .addGap(15, 15, 15)
                         .addComponent(jLabel2)
                         .addGap(6, 6, 6)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                     .addComponent(jScrollPane2)
@@ -205,11 +202,12 @@ public class MenuClienteCatMusica extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnanadir)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnComprar)
-                            .addComponent(jLabel6)
-                            .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnanadir)
+                                .addComponent(jLabel6)
+                                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(34, 34, 34))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -293,13 +291,14 @@ public class MenuClienteCatMusica extends javax.swing.JFrame {
             
             DefaultListModel modelo = new DefaultListModel();
             
-            boolean bandera = false;
+            boolean bandera = false, bandera2 = false;
             
             while((linea = lector.readLine())!=null){
                 //busqueda por nombre de disco
                 if(txtBuscar.getText().equalsIgnoreCase(linea.split(" ")[0].replaceAll("_", " "))){
                     modelo.addElement(linea.split(" ")[0]);
                     bandera = true;
+                    bandera2 = true;
                 }//busqueda por autor
                 else{
                     if(txtBuscar.getText().equalsIgnoreCase(linea.split(" ")[1].replace("_", " "))){
@@ -315,7 +314,7 @@ public class MenuClienteCatMusica extends javax.swing.JFrame {
 
                                 if (precio >= rango1 && precio <= rango2) {
                                     modelo.addElement(linea.split(" ")[0]);
-                                    bandera = true;
+                                    bandera2 = true;
                                 }
                             }
                         }
@@ -323,7 +322,7 @@ public class MenuClienteCatMusica extends javax.swing.JFrame {
                 }                                         
             }
             
-            if(!bandera){
+            if(!bandera2){
                 JOptionPane.showMessageDialog(null, "Datos incorrectos.", "Error", JOptionPane.ERROR_MESSAGE);
             }
             
