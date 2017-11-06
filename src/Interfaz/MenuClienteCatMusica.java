@@ -22,10 +22,14 @@ public class MenuClienteCatMusica extends javax.swing.JFrame {
     /**
      * Creates new form MenuClienteCatMusica
      */
+    
+    DefaultListModel modeloComprar = new DefaultListModel();
+    
     public MenuClienteCatMusica() {
         initComponents();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        
     }
 
     /**
@@ -51,6 +55,11 @@ public class MenuClienteCatMusica extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txtCompras = new javax.swing.JTextArea();
         btnVolver = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtDetalles = new javax.swing.JTextArea();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtTotal = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Catálogo de música");
@@ -82,8 +91,18 @@ public class MenuClienteCatMusica extends javax.swing.JFrame {
         jLabel4.setText("Buscar Álbum: ");
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         listaAlbumes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listaAlbumes.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listaAlbumesValueChanged(evt);
+            }
+        });
         jScrollPane3.setViewportView(listaAlbumes);
 
         txtCompras.setEditable(false);
@@ -98,6 +117,17 @@ public class MenuClienteCatMusica extends javax.swing.JFrame {
             }
         });
 
+        txtDetalles.setEditable(false);
+        txtDetalles.setColumns(20);
+        txtDetalles.setRows(5);
+        jScrollPane1.setViewportView(txtDetalles);
+
+        jLabel5.setText("Detalles del Álbum: ");
+
+        jLabel6.setText("Total: ");
+
+        txtTotal.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,8 +137,6 @@ public class MenuClienteCatMusica extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnanadir)
-                        .addGap(168, 168, 168)
-                        .addComponent(btnComprar)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -116,58 +144,77 @@ public class MenuClienteCatMusica extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addGap(3, 3, 3)
                                 .addComponent(cmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(56, 56, 56)
-                                .addComponent(jLabel4))
+                                .addGap(130, 130, 130))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(205, 205, 205))
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                                .addComponent(jLabel3)
-                                .addGap(241, 241, 241))
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnVolver)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(btnBuscar))))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnBuscar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(8, 8, 8)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel5)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnComprar)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addGap(3, 3, 3)
+                                        .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnVolver))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))))
+                        .addContainerGap(39, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBuscar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel5))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(cmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(16, 16, 16)
+                            .addComponent(cmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBuscar))
+                        .addGap(15, 15, 15)
                         .addComponent(jLabel2)
                         .addGap(6, 6, 6)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnanadir)
-                    .addComponent(btnComprar)
-                    .addComponent(btnVolver))
-                .addGap(34, 34, 34))
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnanadir)
+                            .addComponent(btnComprar)
+                            .addComponent(jLabel6)
+                            .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnVolver)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -203,12 +250,123 @@ public class MenuClienteCatMusica extends javax.swing.JFrame {
         if(!btnComprar.isEnabled()){
             btnComprar.setEnabled(true);
         }
+        
+        try {
+            String archivo = "CatMusica.txt";
+            
+            FileReader fr = new FileReader(archivo);
+            BufferedReader lector = new BufferedReader(fr);
+            
+            String linea2;
+            
+            while((linea2 = lector.readLine())!=null){
+                if(listaAlbumes.getSelectedValue().equalsIgnoreCase(linea2.split(" ")[0].replaceAll("_", " "))){
+                    if(txtTotal.getText().isEmpty()){
+                        txtTotal.setText(linea2.split(" ")[3]);
+                    }else{     
+                        int precio = Integer.parseInt(linea2.split(" ")[3]);
+                        int total = Integer.parseInt(txtTotal.getText()) + precio;
+                        txtTotal.setText(String.valueOf(total));
+                    }
+                }
+            }
+            
+        } catch(Exception e) {
+            JOptionPane.showConfirmDialog(null, "Archivo no encontrado " + e, "Error", JOptionPane.OK_OPTION);
+        }
+        
     }//GEN-LAST:event_btnanadirActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        try {
+            String archivo = "CatMusica.txt";
+            
+            FileReader fr = new FileReader(archivo);
+            BufferedReader lector = new BufferedReader(fr);
+            
+            String linea;
+            
+            DefaultListModel modelo = new DefaultListModel();
+            
+            boolean bandera = false;
+            
+            while((linea = lector.readLine())!=null){
+                //busqueda por nombre de disco
+                if(txtBuscar.getText().equalsIgnoreCase(linea.split(" ")[0].replaceAll("_", " "))){
+                    modelo.addElement(linea.split(" ")[0]);
+                    bandera = true;
+                }//busqueda por autor
+                else{
+                    if(txtBuscar.getText().equalsIgnoreCase(linea.split(" ")[1].replace("_", " "))){
+                        modelo.addElement(linea.split(" ")[0]);
+                        bandera = true;
+                    }//busqueda por precio (rango)
+                    else{
+                        if(!bandera){
+                            if(isNumeric(txtBuscar.getText().split("-")[0])){
+                                int rango1 = Integer.parseInt(txtBuscar.getText().split("-")[0]);
+                                int rango2 = Integer.parseInt(txtBuscar.getText().split("-")[1]);
+                                int precio = Integer.parseInt(linea.split(" ")[3]);
+
+                                if (precio >= rango1 && precio <= rango2) {
+                                    modelo.addElement(linea.split(" ")[0]);
+                                    bandera = true;
+                                }
+                            }
+                        }
+                    }
+                }                                         
+            }
+            
+            if(!bandera){
+                JOptionPane.showMessageDialog(null, "Datos incorrectos.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            
+            listaAlbumes.setModel(modelo);
+            
+        }catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Archivo no encontrado " + e,"Error",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private boolean isNumeric(String cadena){
+        try{
+            Integer.parseInt(cadena);
+            return true;
+        }catch(NumberFormatException e){
+            return false;
+        }
+    }
+    
+    private void listaAlbumesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaAlbumesValueChanged
+        // TODO add your handling code here:
+        try {
+            String archivo = ("CatMusica.txt");
+            
+            FileReader fr = new FileReader(archivo);
+            BufferedReader lector = new BufferedReader(fr);
+            
+            String linea;
+            
+            while((linea=lector.readLine()) != null){
+                if(linea.split(" ")[0].replaceAll("_", " ").equalsIgnoreCase((String)listaAlbumes.getSelectedValue())){
+                    txtDetalles.setText("Nombre: " + linea.split(" ")[0].replaceAll("_", " ") + "\n" +
+                                        "Autor: " + linea.split(" ")[1].replaceAll("_", " ") + "\n" +
+                                        "Categoría: " + linea.split(" ")[2] + "\n" +
+                                        "Precio: " + linea.split(" ")[3] + "\n" +
+                                        "Lista de Canciones:\n\t" + linea.split(" ")[4].replaceAll("_", " ").replaceAll(",", "\n\t") );
+                }
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Archivo no encontrado " + e, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_listaAlbumesValueChanged
 
     /**
      * @param args the command line arguments
@@ -255,10 +413,15 @@ public class MenuClienteCatMusica extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JList<String> listaAlbumes;
     private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextArea txtCompras;
+    private javax.swing.JTextArea txtDetalles;
+    private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }
