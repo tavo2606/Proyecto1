@@ -19,12 +19,12 @@ import org.jfree.data.general.DefaultPieDataset;
  *
  * @author Tavo
  */
-public class Reporte2 extends javax.swing.JFrame {
+public class Reporte5 extends javax.swing.JFrame {
 
     /**
-     * Creates new form Reporte2
+     * Creates new form Reporte5
      */
-    public Reporte2() {
+    public Reporte5() {
         initComponents();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -58,21 +58,14 @@ public class Reporte2 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cmbUsuarios = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         panelGraficoTorta = new javax.swing.JPanel();
         lblTorta = new javax.swing.JLabel();
+        cmbUsuarios = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Menu Administrador[Reporte 2]");
+        setTitle("Menu Administrado[Reporte 5]");
         setResizable(false);
-
-        cmbUsuarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "{Cédula}" }));
-        cmbUsuarios.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbUsuariosItemStateChanged(evt);
-            }
-        });
 
         jLabel1.setText("Cedula del usuario: ");
 
@@ -90,6 +83,13 @@ public class Reporte2 extends javax.swing.JFrame {
                 .addComponent(lblTorta, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        cmbUsuarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "{Cédula}" }));
+        cmbUsuarios.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbUsuariosItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,7 +126,7 @@ public class Reporte2 extends javax.swing.JFrame {
             grafic();
         }
     }//GEN-LAST:event_cmbUsuariosItemStateChanged
-  
+
     private void grafic() {
         DefaultPieDataset porciones;
         JFreeChart torta;
@@ -134,29 +134,29 @@ public class Reporte2 extends javax.swing.JFrame {
         porciones = new DefaultPieDataset();
         
         try {
-            String archivo = "CompMusica.txt";
+            String archivo = "CompPeliculas.txt";
             
             FileReader fr = new FileReader(archivo);
             BufferedReader lector = new BufferedReader(fr);
             
-            ArrayList<String> listaCompMusica = new ArrayList();
+            ArrayList<String> listaCompPelis = new ArrayList();
             String linea;
             
             while((linea = lector.readLine()) != null){
-                listaCompMusica.add(linea);
+                listaCompPelis.add(linea);
             }
             
             ArrayList<String> listaUsuarioComp = new ArrayList();
             
-            for(int i = 0; i<listaCompMusica.size();i++){
-                if(listaCompMusica.get(i).split(" ")[0].equalsIgnoreCase(cmbUsuarios.getSelectedItem().toString())){
-                    listaUsuarioComp.add(listaCompMusica.get(i).split(" ")[2]);
+            for(int i = 0; i<listaCompPelis.size();i++){
+                if(listaCompPelis.get(i).split(" ")[0].equalsIgnoreCase(cmbUsuarios.getSelectedItem().toString())){
+                    listaUsuarioComp.add(listaCompPelis.get(i).split(" ")[2]);
                 }
             }
             
             for(String comp: listaUsuarioComp){
-                String album = comp.split(" ")[0].replaceAll("_", " ");
-                porciones.setValue(album+ "(" + countEquals(album, listaUsuarioComp)  +")", countEquals(album, listaUsuarioComp));
+                String peli = comp.split(" ")[0].replaceAll("_", " ");
+                porciones.setValue(peli+ "(" + countEquals(peli, listaUsuarioComp)  +")", countEquals(peli, listaUsuarioComp));
             }
             
         } catch(Exception e){
@@ -164,24 +164,12 @@ public class Reporte2 extends javax.swing.JFrame {
         }
         
 
-        torta = ChartFactory.createPieChart3D("Discos de música más comprados por el usuario " + 
+        torta = ChartFactory.createPieChart3D("Discos de películas más comprados por el usuario " + 
                                             obtenerUsuario(), porciones, true, true, false);
         BufferedImage graficoTorta = torta.createBufferedImage(panelGraficoTorta.getWidth(), panelGraficoTorta.getHeight());
         lblTorta.setSize(panelGraficoTorta.getSize());
         lblTorta.setIcon(new ImageIcon(graficoTorta));
         panelGraficoTorta.updateUI();
-    }
-    
-    private int countEquals(String string, ArrayList<String> arrayList) {
-        int count = 0;
-
-        for (String item : arrayList) {
-            if (string.replaceAll("_", " ").equalsIgnoreCase(item.replaceAll("_", " "))) {
-                count += 1;
-            }
-        }
-
-        return count;
     }
     
     private String obtenerUsuario() {
@@ -208,6 +196,19 @@ public class Reporte2 extends javax.swing.JFrame {
         return usuario;
     }
     
+    private int countEquals(String string, ArrayList<String> arrayList) {
+        int count = 0;
+
+        for (String item : arrayList) {
+            if (string.replaceAll("_", " ").equalsIgnoreCase(item.replaceAll("_", " "))) {
+                count += 1;
+            }
+        }
+
+        return count;
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -225,20 +226,20 @@ public class Reporte2 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Reporte2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Reporte2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Reporte2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Reporte2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Reporte2().setVisible(true);
+                new Reporte5().setVisible(true);
             }
         });
     }

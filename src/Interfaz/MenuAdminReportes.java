@@ -66,6 +66,11 @@ public class MenuAdminReportes extends javax.swing.JFrame {
         });
 
         jButton5.setText("Reporte 5");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Reporte 6");
 
@@ -143,6 +148,12 @@ public class MenuAdminReportes extends javax.swing.JFrame {
         Reporte2 v = new Reporte2();
         v.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        Reporte5 v = new Reporte5();
+        v.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

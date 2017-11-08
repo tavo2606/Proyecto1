@@ -36,7 +36,8 @@ public class Reporte4 extends javax.swing.JFrame {
         JFreeChart torta;
 
         porciones = new DefaultPieDataset();
-        String[] listaCategorias = {"Terror","Acción","Suspenso","Comedia","Romance","Thriller","Animado","Drama","Otro"};
+        String[] listaCategorias = {"Terror", "Acción", "Suspenso", "Comedia", "Romance",
+            "Thriller", "Animado", "Drama", "Otro"};
 
         for (String c : listaCategorias) {
             if (valor(c) > 0) {
@@ -114,23 +115,20 @@ public class Reporte4 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        panelGraficoTorta.setPreferredSize(new java.awt.Dimension(672, 349));
-
         javax.swing.GroupLayout panelGraficoTortaLayout = new javax.swing.GroupLayout(panelGraficoTorta);
         panelGraficoTorta.setLayout(panelGraficoTortaLayout);
         panelGraficoTortaLayout.setHorizontalGroup(
             panelGraficoTortaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelGraficoTortaLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(lblTorta)
-                .addContainerGap(701, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(lblTorta, javax.swing.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panelGraficoTortaLayout.setVerticalGroup(
             panelGraficoTortaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelGraficoTortaLayout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(lblTorta)
-                .addContainerGap(298, Short.MAX_VALUE))
+                .addComponent(lblTorta, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -138,14 +136,16 @@ public class Reporte4 extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(panelGraficoTorta, javax.swing.GroupLayout.PREFERRED_SIZE, 747, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 20, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(panelGraficoTorta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(panelGraficoTorta, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 120, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(panelGraficoTorta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
