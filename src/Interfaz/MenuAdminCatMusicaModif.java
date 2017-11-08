@@ -12,7 +12,6 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import jdk.jfr.events.FileWriteEvent;
 /**
  *
  * @author Tavo
@@ -100,6 +99,11 @@ public class MenuAdminCatMusicaModif extends javax.swing.JFrame {
         cmbNombre.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbNombreItemStateChanged(evt);
+            }
+        });
+        cmbNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbNombreActionPerformed(evt);
             }
         });
 
@@ -258,7 +262,6 @@ public class MenuAdminCatMusicaModif extends javax.swing.JFrame {
         if(cmbNombre.getSelectedIndex() != 0){
             try {
                 String archivo = "CatMusica.txt";
-                FileWriter fw = new FileWriter(archivo, true);
 
                 FileReader fr = new FileReader(archivo);
                 BufferedReader lector = new BufferedReader(fr);
@@ -283,9 +286,12 @@ public class MenuAdminCatMusicaModif extends javax.swing.JFrame {
             txtListaCanciones.setText(null);
             txtPrecio.setText(null);
             cmbCategoria.setSelectedIndex(0);
-        }
-        
+        }  
     }//GEN-LAST:event_cmbNombreItemStateChanged
+
+    private void cmbNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbNombreActionPerformed
 
     /**
      * @param args the command line arguments

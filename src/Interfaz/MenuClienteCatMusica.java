@@ -7,7 +7,12 @@ package Interfaz;
 
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
 
@@ -22,12 +27,17 @@ public class MenuClienteCatMusica extends javax.swing.JFrame {
      */
     
     DefaultListModel modeloComprar = new DefaultListModel();
+    String usuario;
     
-    public MenuClienteCatMusica() {
+    public MenuClienteCatMusica(String u) {
         initComponents();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        
+        this.usuario = u;
+    }
+
+    private MenuClienteCatMusica() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -65,6 +75,11 @@ public class MenuClienteCatMusica extends javax.swing.JFrame {
 
         btnComprar.setText("Comprar");
         btnComprar.setEnabled(false);
+        btnComprar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComprarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Categoría: ");
 
@@ -231,7 +246,7 @@ public class MenuClienteCatMusica extends javax.swing.JFrame {
             
             while((linea = lector.readLine()) != null){
                 if(linea.split(" ")[2].equalsIgnoreCase(cmbCategoria.getSelectedItem().toString())){
-                    modelolista.addElement(linea.split(" ")[0].replaceAll("_", ""));
+                    modelolista.addElement(linea.split(" ")[0].replaceAll("_", " "));
                 }
             }
         }catch(Exception e){
@@ -296,14 +311,14 @@ public class MenuClienteCatMusica extends javax.swing.JFrame {
             while((linea = lector.readLine())!=null){
                 //busqueda por nombre de disco
                 if(txtBuscar.getText().equalsIgnoreCase(linea.split(" ")[0].replaceAll("_", " "))){
-                    modelo.addElement(linea.split(" ")[0]);
+                    modelo.addElement(linea.split(" ")[0].replaceAll("_", " "));
                     bandera = true;
                     bandera2 = true;
                 }//busqueda por autor
                 else{
                     if(txtBuscar.getText().equalsIgnoreCase(linea.split(" ")[1].replace("_", " "))){
-                        modelo.addElement(linea.split(" ")[0]);
-                        bandera = true;
+                        modelo.addElement(linea.split(" ")[0].replaceAll("_", " "));
+                        bandera2 = true;
                     }//busqueda por precio (rango)
                     else{
                         if(!bandera){
@@ -313,7 +328,7 @@ public class MenuClienteCatMusica extends javax.swing.JFrame {
                                 int precio = Integer.parseInt(linea.split(" ")[3]);
 
                                 if (precio >= rango1 && precio <= rango2) {
-                                    modelo.addElement(linea.split(" ")[0]);
+                                    modelo.addElement(linea.split(" ")[0].replaceAll("_", " "));
                                     bandera2 = true;
                                 }
                             }
@@ -323,7 +338,7 @@ public class MenuClienteCatMusica extends javax.swing.JFrame {
             }
             
             if(!bandera2){
-                JOptionPane.showMessageDialog(null, "Datos incorrectos.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Datos no encotrados.", "Error", JOptionPane.ERROR_MESSAGE);
             }
             
             listaAlbumes.setModel(modelo);
@@ -367,6 +382,172 @@ public class MenuClienteCatMusica extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_listaAlbumesValueChanged
 
+    private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
+        try {
+            String archivo = "CatMusica.txt";
+            
+            FileReader fr = new FileReader(archivo);
+            BufferedReader lector = new BufferedReader(fr);
+            
+            String linea;
+            ArrayList<String> listaComprar = new ArrayList();
+            ArrayList<String> listaPreOrden = new ArrayList();
+            
+            while((linea = lector.readLine())!=null){
+                for(String producto : txtCompras.getText().split("\n")){
+                    if(producto.equalsIgnoreCase(linea.split(" ")[0].replaceAll("_", " "))){
+                        if(Integer.parseInt(linea.split(" ")[5]) > 0){
+                            listaComprar.add(producto);
+                        }else{
+                            listaPreOrden.add(producto);
+                        }
+                    }
+                }
+            }
+            
+            if(listaPreOrden.isEmpty()){
+                int opc = JOptionPane.showConfirmDialog(null, "Desea realizar la compra? (Total: " + txtTotal.getText() + ")", "Comprar", JOptionPane.YES_NO_OPTION);
+                if(opc == JOptionPane.YES_OPTION){
+                    pago(listaComprar);
+                    JOptionPane.showConfirmDialog(null, "Compra realizada exitosamente.", "Comprar", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Compra no realizada","Comprar",JOptionPane.DEFAULT_OPTION);
+                }
+                
+            }else{
+                // llenar lista pre orden
+                //chekout
+            }
+            
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Archivo no encontrado " + e, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        cmbCategoria.setSelectedIndex(0);
+        listaAlbumes.setModel(new DefaultListModel<>());
+        txtBuscar.setText(null);
+        txtDetalles.setText(null);
+        txtCompras.setText(null);
+        txtTotal.setText(null);
+    }//GEN-LAST:event_btnComprarActionPerformed
+
+    private void pago(ArrayList<String> listaComprar){
+        try {
+            String archivo = "CatMusica.txt";
+            FileWriter fw = new FileWriter(archivo, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+
+            FileReader fr = new FileReader("CatMusica.txt");
+            BufferedReader lector = new BufferedReader(fr);
+            
+            ArrayList<String> listaMusica = new ArrayList();
+            String linea;
+            
+            while((linea = lector.readLine()) != null){
+                listaMusica.add(linea);
+            }
+            
+            for (int i = 0; i < listaMusica.size(); i++) {
+                for (String producto : listaComprar) {
+                    if (listaMusica.get(i).split(" ")[0].replaceAll("_", " ").equalsIgnoreCase(producto)) {
+                        int cantidadProducto = Integer.parseInt(listaMusica.get(i).split(" ")[5]) - countEquals(producto, listaComprar);
+                        String newMusic = listaMusica.get(i).split(" ")[0] + " " + listaMusica.get(i).split(" ")[1] + " "
+                                + listaMusica.get(i).split(" ")[2] + " "
+                                + listaMusica.get(i).split(" ")[3] + " " 
+                                + listaMusica.get(i).split(" ")[4] + " " + cantidadProducto;
+                        listaMusica.set(i, newMusic);
+                        guardarRecibo(producto);
+                    }
+                }
+            }
+
+            PrintWriter escritor = null;
+            FileWriter fichero = null;
+
+            try {
+                fichero = new FileWriter(archivo);
+                escritor = new PrintWriter(fichero);
+                escritor.flush();
+                for (String pelicula : listaMusica) {
+                    pw.write(pelicula);
+                    pw.println();
+                }
+                escritor.close();
+            } catch (Exception e) {
+                JOptionPane.showConfirmDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            
+            pw.close();
+
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Archino no encontrado " + e, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void guardarRecibo(String prodcuto){
+        try{
+            
+            String archivo = "CompMusica.txt";
+            FileWriter fw = new FileWriter(archivo, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+            
+            FileReader fr = new FileReader("CompMusica.txt");
+            BufferedReader lector = new BufferedReader(fr);
+            
+            ArrayList<String> listaRecibo = new ArrayList();
+            String linea;
+            
+            while((linea=lector.readLine()) != null){
+                listaRecibo.add(linea);
+            }
+            
+            Calendar c1 = Calendar.getInstance();
+            int day = c1.get(Calendar.DATE),month = c1.get(Calendar.MONTH) + 1,year = c1.get(Calendar.YEAR);
+            String fecha = String.valueOf( day + "/" + month+ "/" + year);
+            
+            String newRecibo = usuario.split(" ")[2] + " " + usuario.split(" ")[3] + " " +
+                               prodcuto.replaceAll(" ", "_") + " " + fecha;
+            
+            listaRecibo.add(newRecibo);
+            
+            PrintWriter escritor = null;
+            FileWriter fichero = null;
+            
+            try {
+                fichero = new FileWriter(archivo);
+                escritor = new PrintWriter(fichero);
+                escritor.flush();
+                
+                for(String item:listaRecibo){
+                    pw.write(item);
+                    pw.println();
+                }
+                                
+            } catch(Exception e){
+                JOptionPane.showConfirmDialog(null, "Archivo no encontrado " + e , "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            
+            pw.close();
+            
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Archivo no encontrado " + e, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private int countEquals(String string, ArrayList<String> arrayList){
+        int count = 0;
+        
+        for(String item: arrayList){
+            if(string.equalsIgnoreCase(item)){
+                count += 1;
+            }
+        }
+        
+        return count;
+    }
+    
     /**
      * @param args the command line arguments
      */

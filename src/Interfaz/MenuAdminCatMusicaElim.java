@@ -76,7 +76,7 @@ public class MenuAdminCatMusicaElim extends javax.swing.JFrame {
 
         jLabel1.setText("Nombre de álbum: ");
 
-        txtAutor.setEnabled(false);
+        txtAutor.setEditable(false);
 
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -87,14 +87,14 @@ public class MenuAdminCatMusicaElim extends javax.swing.JFrame {
 
         jLabel5.setText("Lista de canciones: ");
 
+        txtListaCanciones.setEditable(false);
         txtListaCanciones.setColumns(20);
         txtListaCanciones.setRows(5);
-        txtListaCanciones.setEnabled(false);
         jScrollPane1.setViewportView(txtListaCanciones);
 
         jLabel4.setText("Precio: ");
 
-        txtCantidad.setEnabled(false);
+        txtCantidad.setEditable(false);
         txtCantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCantidadActionPerformed(evt);
@@ -110,7 +110,7 @@ public class MenuAdminCatMusicaElim extends javax.swing.JFrame {
 
         jLabel6.setText("Cantidad disponible:");
 
-        txtPrecio.setEnabled(false);
+        txtPrecio.setEditable(false);
 
         jLabel2.setText("Autor: ");
 
@@ -206,7 +206,7 @@ public class MenuAdminCatMusicaElim extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         
         int opc = JOptionPane.showConfirmDialog(null, "Desea eliminar el álbum: " + cmbNombre.getSelectedItem().toString(), 
-                "Eliminar",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+                                                "Eliminar",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
         
         if(opc == JOptionPane.YES_OPTION){
             try {

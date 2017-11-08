@@ -91,7 +91,6 @@ public class MenuAdminCatPeliMod extends javax.swing.JFrame {
 
         cmbCategoria.setEditable(true);
         cmbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "{Categoría}", "Terror", "Acción", "Suspenso", "Comedia", "Romance", "Thriller", "Animado", "Drama", "Otro" }));
-        cmbCategoria.setEnabled(false);
 
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -205,7 +204,6 @@ public class MenuAdminCatPeliMod extends javax.swing.JFrame {
                 listaPelicula.add(linea);
             }
 
-            boolean existe = false;
             for(int i = 0; i<listaPelicula.size();i++){
                 if (listaPelicula.get(i).split(" ")[0].replaceAll("_", " ").equals(cmbNombre.getSelectedItem().toString())) {
                     PrintWriter escritor = null;

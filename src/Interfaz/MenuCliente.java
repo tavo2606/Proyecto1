@@ -14,9 +14,17 @@ public class MenuCliente extends javax.swing.JFrame {
     /**
      * Creates new form MenuCliente
      */
-    public MenuCliente() {
+    
+    String usuario;
+    
+    public MenuCliente(String u) {
         initComponents();
         setLocationRelativeTo(null);
+        this.usuario = u;
+    }
+
+    private MenuCliente() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -37,8 +45,18 @@ public class MenuCliente extends javax.swing.JFrame {
         setResizable(false);
 
         btnMusica.setText("Catálogo de música");
+        btnMusica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMusicaActionPerformed(evt);
+            }
+        });
 
         btnPeliculas.setText("Catálogo de películas");
+        btnPeliculas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPeliculasActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Cerrar sesión");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -56,7 +74,7 @@ public class MenuCliente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnPeliculas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnMusica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addContainerGap(145, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
@@ -82,6 +100,16 @@ public class MenuCliente extends javax.swing.JFrame {
         v.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnMusicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMusicaActionPerformed
+        MenuClienteCatMusica v = new MenuClienteCatMusica(usuario);
+        v.setVisible(true);
+    }//GEN-LAST:event_btnMusicaActionPerformed
+
+    private void btnPeliculasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPeliculasActionPerformed
+        MenuClienteCatPeli v = new MenuClienteCatPeli(usuario);
+        v.setVisible(true);
+    }//GEN-LAST:event_btnPeliculasActionPerformed
 
     /**
      * @param args the command line arguments

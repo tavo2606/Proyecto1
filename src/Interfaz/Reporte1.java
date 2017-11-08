@@ -126,14 +126,14 @@ public class Reporte1 extends javax.swing.JFrame {
             .addGroup(panelGraficoTortaLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(lblTorta)
-                .addContainerGap(626, Short.MAX_VALUE))
+                .addContainerGap(629, Short.MAX_VALUE))
         );
         panelGraficoTortaLayout.setVerticalGroup(
             panelGraficoTortaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelGraficoTortaLayout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addComponent(lblTorta)
-                .addContainerGap(301, Short.MAX_VALUE))
+                .addContainerGap(299, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -142,13 +142,13 @@ public class Reporte1 extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelGraficoTorta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 95, Short.MAX_VALUE))
+                .addGap(0, 92, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelGraficoTorta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 117, Short.MAX_VALUE))
+                .addGap(0, 119, Short.MAX_VALUE))
         );
 
         pack();

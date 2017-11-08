@@ -68,6 +68,11 @@ public class MenuAdminCatMusica extends javax.swing.JFrame {
         });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,7 +90,7 @@ public class MenuAdminCatMusica extends javax.swing.JFrame {
                             .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnMostar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 203, Short.MAX_VALUE)))
+                        .addGap(0, 199, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -117,7 +122,7 @@ public class MenuAdminCatMusica extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnMostarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostarActionPerformed
-        MenuAdminCatMost v = new MenuAdminCatMost();
+        MenuAdminCatMusicaMost v = new MenuAdminCatMusicaMost();
         v.setVisible(true);
     }//GEN-LAST:event_btnMostarActionPerformed
 
@@ -125,6 +130,11 @@ public class MenuAdminCatMusica extends javax.swing.JFrame {
         MenuAdminCatMusicaModif v = new MenuAdminCatMusicaModif();
         v.setVisible(true);
     }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        MenuAdminCatMusicaElim v = new MenuAdminCatMusicaElim();
+        v.setVisible(true);
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments

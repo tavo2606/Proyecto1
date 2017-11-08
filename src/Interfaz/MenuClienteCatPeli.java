@@ -402,10 +402,16 @@ public class MenuClienteCatPeli extends javax.swing.JFrame {
             }
             
             if(listaPreOrden.isEmpty()){
-                pago(listaComprar);
-                JOptionPane.showConfirmDialog(null, "Compra realizada exitosamente.", "Comprar", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                int opc = JOptionPane.showConfirmDialog(null, "Desea realizar la compra? (Total: " + txtTotal.getText() + ")", "Comprar", JOptionPane.YES_NO_OPTION);
+                if(opc == JOptionPane.YES_OPTION){
+                    pago(listaComprar);
+                    JOptionPane.showConfirmDialog(null, "Compra realizada exitosamente.", "Comprar", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Compra no realizada","Comprar",JOptionPane.DEFAULT_OPTION);
+                }
+                
             }else{
-                // llenar lista
+                // llenar lista pre orden
                 //chekout
             }
             
@@ -413,6 +419,13 @@ public class MenuClienteCatPeli extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Archivo no encontrado " + e, "Error", JOptionPane.ERROR_MESSAGE);
         }
         
+        cmbCategoria.setSelectedIndex(0);
+        listaPelis.setModel(new DefaultListModel<>());
+        txtBuscar.setText(null);
+        txtDetalles.setText(null);
+        txtCompras.setText(null);
+        txtTotal.setText(null);
+                
     }//GEN-LAST:event_btnComprarActionPerformed
 
     private void pago(ArrayList<String> listaComprar){

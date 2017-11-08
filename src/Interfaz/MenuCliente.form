@@ -31,7 +31,7 @@
                   <Component id="btnPeliculas" max="32767" attributes="0"/>
                   <Component id="btnMusica" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="126" max="32767" attributes="0"/>
+              <EmptySpace pref="145" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
@@ -59,11 +59,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Cat&#xe1;logo de m&#xfa;sica"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMusicaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnPeliculas">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cat&#xe1;logo de pel&#xed;culas"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPeliculasActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>

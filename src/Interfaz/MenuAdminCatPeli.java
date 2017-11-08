@@ -113,7 +113,8 @@ public class MenuAdminCatPeli extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        
+        MenuAdminCatPeliMod v = new MenuAdminCatPeliMod();
+        v.setVisible(true);
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnMostarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostarActionPerformed
@@ -131,7 +132,8 @@ public class MenuAdminCatPeli extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        
+        MenuAdminCatPeliElim v = new MenuAdminCatPeliElim();
+        v.setVisible(true);
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**

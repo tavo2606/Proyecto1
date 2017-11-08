@@ -61,6 +61,11 @@ public class Login extends javax.swing.JFrame {
         buttonGroup1.add(jrbCliente);
         jrbCliente.setSelected(true);
         jrbCliente.setText("Cliente");
+        jrbCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbClienteActionPerformed(evt);
+            }
+        });
 
         btnIngresar.setText("Ingresar");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -155,6 +160,10 @@ public class Login extends javax.swing.JFrame {
         v.setVisible(true);
     }//GEN-LAST:event_btnRegistarseActionPerformed
 
+    private void jrbClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jrbClienteActionPerformed
+
     
     public void VerificarAdministrador(String dato)throws IOException{
         try {
@@ -174,6 +183,8 @@ public class Login extends javax.swing.JFrame {
             String linea;
             boolean bandera = false;
             
+            String usuario = "";
+            
             ArrayList<String> listaAdministradores = new ArrayList();
 
             while ((linea = lector.readLine()) != null) {
@@ -181,8 +192,16 @@ public class Login extends javax.swing.JFrame {
             }
 
             for (int i = 0; i < listaAdministradores.size(); i++) {
-                if (nombre.equals(listaAdministradores.get(i).split(" ")[0]) && contraseña.equals(listaAdministradores.get(i).split(" ")[1])) {
-                    bandera = true;
+                if(jrAdmin.isSelected()){
+                    if (nombre.equals(listaAdministradores.get(i).split(" ")[0]) && contraseña.equals(listaAdministradores.get(i).split(" ")[1])) {
+                        bandera = true;
+                        usuario = listaAdministradores.get(i);
+                    }
+                }else{
+                    if (nombre.equals(listaAdministradores.get(i).split(" ")[2]) && contraseña.equals(listaAdministradores.get(i).split(" ")[1])) {
+                        bandera = true;
+                        usuario = listaAdministradores.get(i);
+                    }
                 }
             }
            
@@ -191,7 +210,7 @@ public class Login extends javax.swing.JFrame {
                     MenuAdmin v = new MenuAdmin();
                     v.setVisible(true);
                 }else{
-                    MenuCliente v = new MenuCliente();
+                    MenuCliente v = new MenuCliente(usuario);
                     v.setVisible(true);
                 }
             } else {
