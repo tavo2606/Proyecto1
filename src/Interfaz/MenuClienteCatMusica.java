@@ -405,18 +405,32 @@ public class MenuClienteCatMusica extends javax.swing.JFrame {
                 }
             }
             
-            if(listaPreOrden.isEmpty()){
+            if (listaPreOrden.isEmpty()) {
                 int opc = JOptionPane.showConfirmDialog(null, "Desea realizar la compra? (Total: " + txtTotal.getText() + ")", "Comprar", JOptionPane.YES_NO_OPTION);
-                if(opc == JOptionPane.YES_OPTION){
+                if (opc == JOptionPane.YES_OPTION) {
                     pago(listaComprar);
                     JOptionPane.showConfirmDialog(null, "Compra realizada exitosamente.", "Comprar", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE);
-                }else{
-                    JOptionPane.showMessageDialog(null, "Compra no realizada","Comprar",JOptionPane.DEFAULT_OPTION);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Compra no realizada", "Comprar", JOptionPane.DEFAULT_OPTION);
                 }
-                
-            }else{
-                // llenar lista pre orden
-                //chekout
+
+            } else {
+                int resp = JOptionPane.showConfirmDialog(null, "Los siguientes albumes no estan en existencia: \n"
+                        + listaPreOrden.toString() + "\nDesea agregarlo a la lista de preorden?", "PreOrden", JOptionPane.YES_NO_OPTION);
+                if (resp == JOptionPane.YES_OPTION) {
+                    for (String p : listaPreOrden) {
+                        preorden(p, listaPreOrden);
+                    }
+                }
+                if (!listaComprar.isEmpty()) {
+                    int opc = JOptionPane.showConfirmDialog(null, "Desea realizar la compra? (Total: " + txtTotal.getText() + ")", "Comprar", JOptionPane.YES_NO_OPTION);
+                    if (opc == JOptionPane.YES_OPTION) {
+                        pago(listaComprar);
+                        JOptionPane.showConfirmDialog(null, "Compra realizada exitosamente.", "Comprar", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Compra no realizada", "Comprar", JOptionPane.DEFAULT_OPTION);
+                    }
+                }
             }
             
         } catch(Exception e) {
@@ -431,6 +445,52 @@ public class MenuClienteCatMusica extends javax.swing.JFrame {
         txtTotal.setText(null);
     }//GEN-LAST:event_btnComprarActionPerformed
 
+    private void preorden(String prodcuto, ArrayList<String> listaPreOrden){
+        try{
+            
+            String archivo = "PreMusica.txt";
+            FileWriter fw = new FileWriter(archivo, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+            
+            FileReader fr = new FileReader("PreMusica.txt");
+            BufferedReader lector = new BufferedReader(fr);
+            
+            ArrayList<String> listaPreOrdenes = new ArrayList();
+            String linea;
+            
+            while((linea=lector.readLine()) != null){
+                listaPreOrdenes.add(linea);
+            }
+            
+            String newPreOrden = prodcuto.replaceAll(" ", "_") + " " + "Tipo:Musica" + " " + countEquals(prodcuto, listaPreOrden);
+            
+            listaPreOrdenes.add(newPreOrden);
+            
+            PrintWriter escritor = null;
+            FileWriter fichero = null;
+            
+            try {
+                fichero = new FileWriter(archivo);
+                escritor = new PrintWriter(fichero);
+                escritor.flush();
+                
+                for(String item:listaPreOrdenes){
+                    pw.write(item);
+                    pw.println();
+                }
+                                
+            } catch(Exception e){
+                JOptionPane.showConfirmDialog(null, "Archivo no encontrado " + e , "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            
+            pw.close();
+            
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Archivo no encontrado " + e, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     private void pago(ArrayList<String> listaComprar){
         try {
             String archivo = "CatMusica.txt";

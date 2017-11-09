@@ -1,0 +1,2 @@
+hypnotize Tipo:Musica1
+hypnotize Tipo:Musica 1

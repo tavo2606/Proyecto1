@@ -204,12 +204,15 @@ public class Login extends javax.swing.JFrame {
                     }
                 }
             }
+           boolean ingreso = false;
            
             if (bandera) {
                 if(dato.equals("Admin.txt")){
+                    ingreso = true;
                     MenuAdmin v = new MenuAdmin();
                     v.setVisible(true);
                 }else{
+                    ingreso = true;
                     MenuCliente v = new MenuCliente(usuario);
                     v.setVisible(true);
                 }
@@ -217,7 +220,15 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecto.", "Error", JOptionPane.ERROR_MESSAGE);
             }
             pw.close();
-            this.dispose();
+            
+            if (ingreso) {
+                this.dispose();
+            } else {
+                txtPass.setText(null);
+                txtUser.setText(null);
+                txtUser.requestFocus();
+                jrbCliente.setSelected(true);
+            }
 
         } catch (Exception e) {
 

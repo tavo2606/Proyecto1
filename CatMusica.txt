@@ -1,5 +1,5 @@
 Needles System_of_a_down Rock 6500 Needles,Chop_suey,prison 14
 Wings BTS Pop 15000 intro:_Boy_meets_evil,Blood_Sweat_&_tears,Begin,Lie,First_love,Reflection,MAMA,Awake,Lost,BTS_Cypher_PT.4,Am_I_Wrong,21st_Century_Girls,Dul!_Set!,Interlude:wings 8
-Toxicity System_of_a_down Rock 6500 Toxicity 3
+Toxicity System_of_a_down Rock 6500 Toxicity 2
 Musica Musica Merengue 9800 Merengue,Reggueton,Prueba,LOL,IDK 3
-hypnotize system_of_a_down Rock 7500 hypnotize 2
+hypnotize system_of_a_down Rock 7500 hypnotize 0
