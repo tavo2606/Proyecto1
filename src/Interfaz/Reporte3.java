@@ -167,7 +167,7 @@ public class Reporte3 extends javax.swing.JFrame {
                 }
             }
             
-            dataset.setValue(0, "Meses", meses[mes1]);
+            dataset.setValue(0, "Meses", meses[mes1-1]);
             
             for(String fecha : listaCantidad){
                 int m = Integer.parseInt(fecha.split("/")[1]);
