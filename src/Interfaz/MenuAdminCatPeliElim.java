@@ -70,7 +70,7 @@ public class MenuAdminCatPeliElim extends javax.swing.JFrame {
         cmbNombre = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Catálogo de música[Eliminar]");
+        setTitle("Catálogo de películas[Eliminar]");
         setResizable(false);
 
         txtCantidad.setEditable(false);

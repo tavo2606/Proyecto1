@@ -70,7 +70,7 @@ public class MenuAdminCatPeliMod extends javax.swing.JFrame {
         cmbNombre = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Catálogo de música[Modificar]");
+        setTitle("Catálogo de películas[Modificar]");
         setResizable(false);
 
         txtCantidad.addActionListener(new java.awt.event.ActionListener() {
