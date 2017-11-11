@@ -129,7 +129,7 @@ public class Reporte3 extends javax.swing.JFrame {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         
         JFreeChart lineaG;
-        String[] meses = {"Enero","Febrero","Marzo","Abril","Junio",
+        String[] meses = {"Enero","Febrero","Marzo","Abril","Mayo","Junio",
                           "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"};
         
         try{
@@ -167,8 +167,10 @@ public class Reporte3 extends javax.swing.JFrame {
                 }
             }
             
+            dataset.setValue(0, "Meses", meses[mes1]);
+            
             for(String fecha : listaCantidad){
-                int m = Integer.parseInt(fecha.split("/")[0]);
+                int m = Integer.parseInt(fecha.split("/")[1]);
                 dataset.setValue(countEquals(fecha, listaCantidad), "Meses", meses[m-1]);
             }
             
